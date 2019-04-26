@@ -37,10 +37,14 @@ The ["../Trends"](https://github.com/SwampThingPaul/FCE-BGChemWG/tree/9a008f5036
 
 Here are preliminary plots.
 
+<img src="./Trends/Plots/TPTNDOC_WQPlots.png" align="center" width = "100%"/>
+
 ![](./Trends/Plots/TPTNDOC_WQPlots.png)
 <center> Total Phosphorus, Total Nitrogen and Dissolved Organic Carbon concentration data for sites along Shark River Slough (SRS) and Taylor Slough (TS).</center>
 
 <br>
+<br>
+
 
 ![](./Trends/Plots/SRPDIN_WQPlots.png)
 <center> Soluable Reactive Phosphorus and Dissolved Inorganic Nitrogen concentration data for sites along Shark River Slough (SRS) and Taylor Slough (TS).</center>
