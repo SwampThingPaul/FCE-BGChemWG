@@ -5,8 +5,8 @@ This repo is dedicated to the sharing of information between [Biogeochemistry Wo
 # Task Lists
 
 - [x] Develop R function to retrieve data directly from LTER main data portal [https://portal.lternet.edu](https://portal.lternet.edu/nis/home.jsp).
-- [ ] Develop R-sciript to retrieve, screen and plot data along Shark River and Taylor Slough transects. 
-- [ ] Develop an R-shiny app to interact with BGChem data
+- [ ] Develop R-script to retrieve, screen and plot data along Shark River and Taylor Slough transects. 
+- [ ] Develop a R-shiny app to interact with BGChem data
 
 ***
 
@@ -37,4 +37,9 @@ The ["../Trends"](https://github.com/SwampThingPaul/FCE-BGChemWG/tree/9a008f5036
 Here are preliminary plots.
 
 ![](./Trends/Plots/TPTNDOC_WQPlots.png)
-<center> Total Phosphorus, Total Nitrogen and Dissolved Organic Carbon for sites along Shark River Slough (SRS) and Taylor Slough (TS).</center>
+<center> Total Phosphorus, Total Nitrogen and Dissolved Organic Carbon concentration data for sites along Shark River Slough (SRS) and Taylor Slough (TS).</center>
+
+
+
+![](./Trends/Plots/SRPDIN_WQPlots.png)
+<center> Soluable Reactive Phosphorus and Dissolved Inorganic Nitrogen concentration data for sites along Shark River Slough (SRS) and Taylor Slough (TS).</center>
