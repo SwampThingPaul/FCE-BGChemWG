@@ -15,6 +15,8 @@ This repo is dedicated to the sharing of information between [Biogeochemistry Wo
 Here is an extremely basic function to pull data from the LTER main data portal. Dataset data package, PASTA and DOI is needed. 
 
 ```
+# Function to retrieve LTER data from the main data portal. 
+
 read.lter=function(data.package,PASTA,DOI){
   prefix="http://pasta.lternet.edu/package/data/eml/"
   
@@ -23,11 +25,12 @@ read.lter=function(data.package,PASTA,DOI){
   return(dt1)
 }
 
-###
+###########
+## Example
+###########
 
 PASTA="1075/8/"
 DOI="ac7159e66cbad75abb61bd1992f8d2c0"
-
 example=read.lter("knb-lter-fce/",PASTA,DOI)
 
 ```
