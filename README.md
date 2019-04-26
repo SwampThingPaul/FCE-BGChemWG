@@ -36,7 +36,7 @@ example=read.lter("knb-lter-fce/",PASTA,DOI)
 ```
 
 ## Trends
-The ["../Trends"](https://github.com/SwampThingPaul/FCE-BGChemWG/tree/9a008f5036add93ea312ffb4dfeae3bc6088d6f6/Trends) sub-directory has scripts specifically analyzing trend data within the FCE monitoring network. 
+The ["../Trends"](./Trends) sub-directory has scripts specifically analyzing trend data within the FCE monitoring network. 
 
 Here are preliminary plots.
 
