@@ -1,16 +1,34 @@
 ---
 title: "Florida Coastal Everglades LTER"
+resource_files:
+- ENP_boundary.dbf
+- ENP_boundary.prj
+- ENP_boundary.shx
+- ENP_boundary.shp
+- ltersites_utm.dbf
+- ltersites_utm.prj
+- ltersites_utm.sbn
+- ltersites_utm.sbx
+- ltersites_utm.shp
+- ltersites_utm.shp.xml
+- ltersites_utm.shx
 runtime: shiny
 output: html_document
 ---
-
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Welcome to the Florida Coastal Everglades Long Term Ecological Research Biogeochemistry Working group [Shiny applicaion](https://shiny.rstudio.com/). 
+***
+
+Welcome to the Florida Coastal Everglades Long Term Ecological Research Biogeochemistry Working group [Shiny applicaion](https://shiny.rstudio.com/). The objective of this application is to allow for user interaction with the FCE LTER data across the LTER and beyond.
+
+```{r, out.width="20%",fig.show="hold",fig.align="center",echo=FALSE}
+knitr::include_graphics("FCE_BGChem.png")
+```
+
+***
 
 ```{r, include=F}
 ## 
@@ -36,7 +54,7 @@ library(rgdal)
 #Paths
 wd="D:/_GitHub/FCE-BGChemWG/Trends"
 
-GIS.path=paste0(wd,"/GIS")
+#GIS.path=paste0(wd,"/GIS")
 GIS.path="./GIS"
 
 #Helper variables 
@@ -56,12 +74,12 @@ read.lter=function(data.package,PASTA,DOI){
 
 ## GIS data
 tmap_mode("view")
-FCE.LTER.sites=spTransform(readOGR(GIS.path,"ltersites_utm"),utm17)
+FCE.LTER.sites=spTransform(readOGR(".","ltersites_utm"),utm17)
 region.sites=data.frame(SITE=c("SRS-1a","SRS-1b", "SRS-1c", "SRS-1d", "SRS-2", "SRS-3", "SRS-4", "SRS-5", "SRS-6",  "TS/Ph-1a", "TS/Ph-1b", "TS/Ph-2a","TS/Ph-2b", "TS/Ph-3", "TS/Ph-6a", "TS/Ph-6b","TS/Ph-7a", "TS/Ph-7b","TS/Ph-4", "TS/Ph-5", "TS/Ph-8", "TS/Ph-9","TS/Ph-10", "TS/Ph-11"),
                         Region=c(rep("Shark River Slough",9),rep("Taylor Slough",9),rep("Panhandle",3),rep("Florida Bay",3)))
 FCE.LTER.sites=merge(FCE.LTER.sites,region.sites,"SITE")
 
-ENP=spTransform(readOGR(GIS.path,"ENP_boundary"),utm17)
+ENP=spTransform(readOGR(".","ENP_boundary"),utm17)
 
 ## Data Import
 dat.sources=data.frame(Dataset=c("LT_ND_Losada_002","LT_ND_Grahl_002","LT_ND_Rubio_002","LT_ND_Rondeau_002"),
@@ -206,6 +224,7 @@ output$unsized <-renderPlot({
   by.y=subset(ylim.vals,parameter==param.sel)$by.y
   ymaj2=seq(ylim.val2[1],ylim.val2[2],by.y);ymin2=seq(ylim.val2[1],ylim.val2[2],by.y/2)
   ylim.val.alt=c(-6,2);by.y.alt=2;ymaj.alt=seq(ylim.val.alt[1],ylim.val.alt[2],by.y.alt);ymin.alt=seq(ylim.val.alt[1],ylim.val.alt[2],by.y.alt/2)
+  #ylim.val.alt=c(floor(min(WY.tmp.dat$cuSum)),ceiling(max(WY.tmp.dat$cuSum)));ymaj.alt=seq(ylim.val.alt[1],ylim.val.alt[2],diff(ylim.val.alt)/2);ymin.alt=seq(ylim.val.alt[1],ylim.val.alt[2],diff(ylim.val.alt)/4)
   
   par(family="serif",mar=c(1.5,2,2,4),oma=c(2.5,1.75,0.75,1.25))
   layout(matrix(1:2,2,1,byrow=F))
@@ -253,3 +272,32 @@ renderUI({
 })
 
 ```
+
+<center> **Top:** Annual (arithmetric) mean based on Florida water year (May to April), annual trend line (Sen Slope $\pm$ 95% Confidence Interval) and cumulative sums consistent with [Regier et al (2019)](https://www.sciencedirect.com/science/article/pii/S2215016119300597){target="_blank"}. **Bottom:** Individual grab samples with a Locally Weighted Scatterplot Smoothing ([LOWESS](https://www.statisticshowto.datasciencecentral.com/lowess-smoothing/){target="_blank"}).
+</center>
+
+***
+
+## References
+-  Regier P, Briceño H, Boyer JN (2019) Analyzing and comparing complex environmental time series using a cumulative sums approach. MethodsX 6:779–787. doi: 10.1016/j.mex.2019.03.014
+
+***
+
+### Task Lists
+Since this is a work *in-progress* here are some items on the task list. If you would like to see additional items on this application let us know what else you would like to see by sending an [email](mailto:pjulian@ufl.edu) to the developer.
+
+- [x] Build base shiny application.
+- [ ] Include summary tables.
+- [ ] Include trend analysis outputs
+- [ ] add boxplots for period comparisons.
+
+***
+
+Created and Maintained by Paul Julian, PhD PWS  [`r icon::fa("envelope")`](mailto:pauljulianphd@gmail.com) [`r icon::fa("chrome")`](https://swampthingpaul.github.io) [`r icon::fa("twitter")`](https://twitter.com/SwampThingPaul) [`r icon::fa("github")`](https://github.com/SwampThingPaul)    
+
+Updated: `r paste(format(Sys.Date(),"%B %d, %Y"))`
+
+Code hosted at [`r icon::fa("github")`](https://github.com/SwampThingPaul/FCE-BGChemWG)
+
+
+***
