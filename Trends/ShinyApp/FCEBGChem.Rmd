@@ -139,8 +139,8 @@ fce.wq$dec.year=decimal_date(fce.wq$Date.EST)
 fce.wq$hydro.season=FL.Hydroseason(fce.wq$Date.EST)
 fce.wq$SITENAME=with(fce.wq,ifelse(substring(fce.wq$SITENAME,1,2)=="TS",paste0("TS/PH",substring(fce.wq$SITENAME,6,7)),as.character(fce.wq$SITENAME)))
 
-fce.wq.sites=data.frame(SITENAME=c(paste0("SRS",c("1a","1c","1d",2,3,4,5,6)),paste0("TS/PH",c("1a","1b",2,3,"6b","6a","7a","7b")),paste0("TS/PH",c(4,5,8)),paste0("TS/PH",c(9,10,11))),
-                        Region=c(rep("SRS",8),rep("TS",8),rep("Ph",3),rep("FB","3")))
+fce.wq.sites=data.frame(SITENAME=c(paste0("SRS",c("1a","1c","1d",2,3,4,5,6)),paste0("TS/PH",c("1a","1b",2,3,"6b","6a","7a","7b")),paste0("TS/PH",c(4,5,8)),paste0("TS/PH",c(9,10,11))),Region=c(rep("SRS",8),rep("TS",8),rep("Ph",3),rep("FB","3")))
+
 fce.wq=merge(fce.wq,fce.wq.sites,all.x=T)
 fce.wq=subset(fce.wq,Date.EST<date.fun("2018-05-01"))
 
@@ -370,7 +370,7 @@ renderUI({
   da.stats=c(signif(mean(tmp.da.dat$value,na.rm=T),2),signif(sd(tmp.da.dat$value,na.rm=T),2),N(tmp.da.dat$value),signif(min(tmp.da.dat$value,na.rm=T),2),signif(max(tmp.da.dat$value,na.rm=T),2))
   WY.stats=c(signif(mean(WY.tmp.dat$value,na.rm=T),2),signif(sd(WY.tmp.dat$value,na.rm=T),2),N(WY.tmp.dat$value),signif(min(WY.tmp.dat$value,na.rm=T),2),signif(max(WY.tmp.dat$value,na.rm=T),2))
   
- summary.stats=data.frame(stats=c("mean","standard deviation","N","Minimum","Maximum"),GrabSamp=da.stats,WY=WY.stats)
+ summary.stats=data.frame(stats=c("Mean","Standard Deviation","N","Minimum","Maximum"),GrabSamp=da.stats,WY=WY.stats)
   
   
 HTML(knitr::kable(summary.stats,row.names=NA,col.names=c("Summary Statistics","Grab Samples","Annual Data"),caption=paste0("Summary statistics for individual grab samples (i.e. monthly data) and annual ",tolower(input$annstat)," ",tolower(input$param.val)," between water years ",input$WY.val[1]," and ",input$WY.val[2],"."),align=c('c','c','c'))%>%
